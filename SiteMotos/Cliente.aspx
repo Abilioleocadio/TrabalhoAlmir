@@ -38,7 +38,7 @@
         <asp:HyperLink ID="HyperLink1" runat="server" EnableTheming="True" NavigateUrl="~/Home.aspx">Voltar</asp:HyperLink>
     </p>
     <div>
-        <asp:GridView ID="grvCliente" CssClass="table" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" CellPadding="4" ForeColor="Black" HorizontalAlign="Center" OnPageIndexChanging="grvCliente_PageIndexChanging" OnRowCommand="grvCliente_RowCommand" CellSpacing="2" Height="147px" DataKeyNames="codigoCliente" DataSourceID="sqlCliente">
+        <asp:GridView ID="grvCliente" CssClass="table" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" CellPadding="4" ForeColor="Black" HorizontalAlign="Center" OnPageIndexChanging="grvCliente_PageIndexChanging" OnRowCommand="grvCliente_RowCommand" CellSpacing="2" Height="147px" DataKeyNames="codigoCliente" DataSourceID="sqlCliente" OnSelectedIndexChanged="grvCliente_SelectedIndexChanged">
             <AlternatingRowStyle BackColor="#CCCCCC" />
             <Columns>
                 <asp:BoundField DataField="codigoCliente" HeaderText="codigoCliente" ReadOnly="True" SortExpression="codigoCliente" />

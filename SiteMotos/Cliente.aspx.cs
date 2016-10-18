@@ -146,4 +146,9 @@ public partial class Cliente : System.Web.UI.Page
             }
         }
     }
+
+    protected void grvCliente_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        //teste
+    }
 }
