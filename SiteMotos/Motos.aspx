@@ -42,23 +42,7 @@
             width: 176px;
             text-align: center;
         }
-        .auto-style37 {
-            display: block;
-            padding: 6px 12px;
-            font-size: 14px;
-            line-height: 1.42857143;
-            color: #555;
-            background-color: #fff;
-            background-image: none;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-            -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-            -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-        }
-    </style>
+        </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <p class="auto-style18">
@@ -72,13 +56,13 @@
     <asp:GridView ID="grvMotos" runat="server" CssClass="table" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CaptionAlign="Bottom" CellPadding="3" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" DataKeyNames="codigoMoto" DataSourceID="sqlMotos" OnPageIndexChanging="grvMotos_PageIndexChanging1" OnRowCommand="grvMotos_RowCommand">
         <AlternatingRowStyle BackColor="#CCCCCC" />
         <Columns>
-            <asp:CommandField ShowSelectButton="True" />
             <asp:BoundField DataField="codigoMoto" HeaderText="codigoMoto" ReadOnly="True" SortExpression="codigoMoto" InsertVisible="False" />
             <asp:BoundField DataField="anoMoto" HeaderText="anoMoto" SortExpression="anoMoto" />
             <asp:BoundField DataField="situacao" HeaderText="situacao" SortExpression="situacao" />
             <asp:BoundField DataField="idCliente" HeaderText="idCliente" SortExpression="idCliente" />
             <asp:BoundField DataField="motoMarca" HeaderText="motoMarca" SortExpression="motoMarca" />
             <asp:BoundField DataField="motoModelo" HeaderText="motoModelo" SortExpression="motoModelo" />
+            <asp:CommandField ShowSelectButton="True" ButtonType="Button" SelectText="Selecionar" />
         </Columns>
         <FooterStyle BackColor="#CCCCCC" />
         <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
@@ -127,7 +111,8 @@
             <tr>
                 <td class="auto-style31"><strong>Cliente:</strong></td>
                 <td class="auto-style29">
-                    <asp:TextBox ID="txtIDCliente" CssClass="form-control" runat="server" Height="20px" Width="74px"></asp:TextBox>
+                    <asp:DropDownList ID="ddlIDCliente" runat="server" DataSourceID="SqlDataSource1" DataTextField="nome" DataValueField="codigoCliente">
+                    </asp:DropDownList>
                 </td>
                 <td class="auto-style36"><strong>
                     <asp:Button ID="btnGravar" runat="server" CssClass="btn btn-primary" Text="Gravar" Width="90px" OnClick="btnGravar_Click" />
@@ -153,7 +138,9 @@
                 </td>
                 <td class="auto-style30"><strong></strong></td>
                 <td>&nbsp;</td>
-                <td>&nbsp;</td>
+                <td>
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MOTOSConnectionString %>" SelectCommand="SELECT * FROM [Cliente]"></asp:SqlDataSource>
+                </td>
             </tr>
         </table>
 </p>

@@ -17,6 +17,7 @@ public partial class Motos : System.Web.UI.Page
             Cache["OP"] = "X";
             habilitarcampos(false);
         }
+        
     }
 
     protected void habilitarcampos(bool status)
@@ -26,14 +27,14 @@ public partial class Motos : System.Web.UI.Page
             lblID.Text = "";
             txtMarca.Text = "";
             txtSituacao.Text = "";
-            txtIDCliente.Text = "";
+            ddlIDCliente.SelectedValue = null;
             txtModelo.Text = "";
             txtAno.Text = "";
         }
 
         txtMarca.Enabled = status;
         txtSituacao.Enabled = status;
-        txtIDCliente.Enabled = status;
+        ddlIDCliente.Enabled = status;
         txtModelo.Enabled = status;
         txtAno.Enabled = status;
 
@@ -72,7 +73,7 @@ public partial class Motos : System.Web.UI.Page
         motos.codigoMoto = Convert.ToInt32(lblID.Text);
         motos.motoMarca = txtMarca.Text;
         motos.situacao = txtSituacao.Text;
-        motos.idCliente = Convert.ToInt32(txtIDCliente.Text);
+        motos.idCliente = Convert.ToInt32(ddlIDCliente.SelectedValue);
         motos.motoModelo = txtModelo.Text;
         motos.anoMoto = txtAno.Text;
 
@@ -107,7 +108,7 @@ public partial class Motos : System.Web.UI.Page
             lblID.Text = linha.Cells[0].Text;
             txtMarca.Text = linha.Cells[1].Text;
             txtSituacao.Text = linha.Cells[2].Text;
-            txtIDCliente.Text = linha.Cells[3].Text;
+            ddlIDCliente.Text = linha.Cells[3].Text;
             txtModelo.Text = linha.Cells[4].Text;
             txtAno.Text = linha.Cells[5].Text;
         }
@@ -144,5 +145,10 @@ public partial class Motos : System.Web.UI.Page
                 txtMarca.Focus();
             }
         }
+    }
+
+    protected void ddlIDCliente_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
     }
 }

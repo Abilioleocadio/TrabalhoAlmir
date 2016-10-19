@@ -89,7 +89,7 @@ namespace Locadora.Camadas.DAL
             cmd.Parameters.AddWithValue("motoMarca", motos.motoMarca);
             cmd.Parameters.AddWithValue("situacao", motos.situacao);
             cmd.Parameters.AddWithValue("idCliente", motos.idCliente);
-            cmd.Parameters.AddWithValue("motoMarca", motos.motoMarca);
+            cmd.Parameters.AddWithValue("motoModelo", motos.motoModelo);
             cmd.Parameters.AddWithValue("anoMoto", motos.anoMoto);
             conexao.Open();
             try
