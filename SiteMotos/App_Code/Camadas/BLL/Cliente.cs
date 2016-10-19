@@ -39,5 +39,5 @@ namespace Locadora.Camadas.BLL
             DAL.Cliente dalCLi = new DAL.Cliente();
             dalCLi.Delete(cliente);
         }
-    }
+    }//
 }
