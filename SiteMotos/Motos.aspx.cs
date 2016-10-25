@@ -12,6 +12,7 @@ public partial class Motos : System.Web.UI.Page
         if (!IsPostBack)
         {
             Locadora.Camadas.BLL.Motos bllMotos = new Locadora.Camadas.BLL.Motos();
+            ddlIDCliente.DataBind();
             grvMotos.DataBind();
 
             Cache["OP"] = "X";
@@ -90,6 +91,7 @@ public partial class Motos : System.Web.UI.Page
         }
 
         grvMotos.DataBind();
+        ddlIDCliente.DataBind();
 
         if (Cache["OP"].ToString() == "I")
         {

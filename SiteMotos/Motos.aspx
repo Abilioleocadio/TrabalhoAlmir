@@ -49,20 +49,20 @@
     <strong>
     <span class="auto-style19">MOTOS</span></strong></p>
 <p>
-    <asp:SqlDataSource ID="sqlMotos" runat="server" ConnectionString="<%$ ConnectionStrings:MOTOSConnectionString %>" SelectCommand="SELECT [codigoMoto], [anoMoto], [situacao], [idCliente], [motoMarca], [motoModelo] FROM [Motos]"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="sqlMotos" runat="server" ConnectionString="<%$ ConnectionStrings:MOTOSConnectionString %>" SelectCommand="SELECT [idCliente], [codigoMoto], [motoMarca], [situacao], [motoModelo], [anoMoto] FROM [Motos]"></asp:SqlDataSource>
 </p>
 <p>
 </p>
     <asp:GridView ID="grvMotos" runat="server" CssClass="table" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CaptionAlign="Bottom" CellPadding="3" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" DataKeyNames="codigoMoto" DataSourceID="sqlMotos" OnPageIndexChanging="grvMotos_PageIndexChanging1" OnRowCommand="grvMotos_RowCommand">
         <AlternatingRowStyle BackColor="#CCCCCC" />
         <Columns>
-            <asp:BoundField DataField="codigoMoto" HeaderText="codigoMoto" ReadOnly="True" SortExpression="codigoMoto" InsertVisible="False" />
-            <asp:BoundField DataField="anoMoto" HeaderText="anoMoto" SortExpression="anoMoto" />
-            <asp:BoundField DataField="situacao" HeaderText="situacao" SortExpression="situacao" />
-            <asp:BoundField DataField="idCliente" HeaderText="idCliente" SortExpression="idCliente" />
-            <asp:BoundField DataField="motoMarca" HeaderText="motoMarca" SortExpression="motoMarca" />
-            <asp:BoundField DataField="motoModelo" HeaderText="motoModelo" SortExpression="motoModelo" />
-            <asp:CommandField ShowSelectButton="True" ButtonType="Button" SelectText="Selecionar" />
+            <asp:BoundField DataField="idCliente" HeaderText="ID Cliente" SortExpression="idCliente" />
+            <asp:BoundField DataField="codigoMoto" HeaderText="ID Moto" SortExpression="codigoMoto" InsertVisible="False" ReadOnly="True" />
+            <asp:BoundField DataField="motoMarca" HeaderText="Marca" SortExpression="motoMarca" />
+            <asp:BoundField DataField="situacao" HeaderText="Situação" SortExpression="situacao" />
+            <asp:BoundField DataField="motoModelo" HeaderText="Modelo" SortExpression="motoModelo" />
+            <asp:BoundField DataField="anoMoto" HeaderText="Ano" SortExpression="anoMoto" />
+            <asp:CommandField ButtonType="Button" SelectText="Selecionar" ShowSelectButton="True" />
         </Columns>
         <FooterStyle BackColor="#CCCCCC" />
         <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
@@ -111,7 +111,8 @@
             <tr>
                 <td class="auto-style31"><strong>Cliente:</strong></td>
                 <td class="auto-style29">
-                    <asp:DropDownList ID="ddlIDCliente" runat="server" DataSourceID="SqlDataSource1" DataTextField="nome" DataValueField="codigoCliente">
+                    <asp:DropDownList ID="ddlIDCliente" runat="server" DataSourceID="SqlDataSource1" DataTextField="nome" DataValueField="codigoCliente" Width="118px">
+                        <asp:ListItem></asp:ListItem>
                     </asp:DropDownList>
                 </td>
                 <td class="auto-style36"><strong>
