@@ -33,7 +33,7 @@
     <asp:SqlDataSource ID="sqlPeca" runat="server" ConnectionString="<%$ ConnectionStrings:MOTOSConnectionString %>" SelectCommand="SELECT [codigoPecas], [nome], [anoPeca], [quantidade], [preco] FROM [Pecas]"></asp:SqlDataSource>
 </p>
 <p class="auto-style19">
-    <asp:GridView ID="grvVendas" runat="server" CssClasse="table" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" DataKeyNames="codigoVenda" DataSourceID="sqlVendas" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center">
+    <asp:GridView ID="grvVendas" CssClass="table" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" DataKeyNames="codigoVenda" DataSourceID="sqlVendas" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnPageIndexChanging="grvVendas_PageIndexChanging" OnRowCommand="grvVendas_RowCommand">
         <AlternatingRowStyle BackColor="#CCCCCC" />
         <Columns>
             <asp:BoundField DataField="codigoVenda" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="codigoVenda" />
@@ -60,7 +60,7 @@
                 <asp:Label ID="lblID" runat="server"></asp:Label>
             </td>
             <td><strong>
-                <asp:Button ID="btnInserir" runat="server" CssClass="btn btn-primary" Text="Inserir" Width="90px" />
+                <asp:Button ID="btnInserir" runat="server" CssClass="btn btn-primary" Text="Inserir" Width="90px" OnClick="btnInserir_Click" />
                 </strong></td>
             <td>&nbsp;</td>
         </tr>
@@ -71,7 +71,7 @@
                 </asp:DropDownList>
             </td>
             <td><strong>
-                <asp:Button ID="btnEditar" runat="server" CssClass="btn btn-primary" Text="Editar" Width="90px" />
+                <asp:Button ID="btnEditar" runat="server" CssClass="btn btn-primary" Text="Editar" Width="90px" OnClick="btnEditar_Click" />
                 </strong></td>
             <td>&nbsp;</td>
         </tr>
@@ -82,18 +82,18 @@
                 </asp:DropDownList>
             </td>
             <td><strong>
-                <asp:Button ID="btnRemover" runat="server" CssClass="btn btn-danger" Text="Remover" Width="90px" />
+                <asp:Button ID="btnRemover" runat="server" CssClass="btn btn-danger" Text="Remover" Width="90px" OnClick="btnRemover_Click" />
                 </strong></td>
             <td>&nbsp;</td>
         </tr>
         <tr>
             <td class="auto-style22">Moto:</td>
             <td class="auto-style23">
-                <asp:DropDownList ID="ddlMoto" runat="server" DataSourceID="sqlMoto" DataTextField="motoMarca" DataValueField="codigoMoto" Width="120px">
+                <asp:DropDownList ID="ddlMoto" runat="server" DataSourceID="sqlMoto" DataTextField="motoModelo" DataValueField="codigoMoto" Width="120px">
                 </asp:DropDownList>
             </td>
             <td><strong>
-                <asp:Button ID="btnGravar" runat="server" CssClass="btn btn-primary" Text="Gravar" Width="90px" />
+                <asp:Button ID="btnGravar" runat="server" CssClass="btn btn-primary" Text="Gravar" Width="90px" OnClick="btnGravar_Click" />
                 </strong></td>
             <td>&nbsp;</td>
         </tr>
@@ -101,7 +101,7 @@
             <td class="auto-style21">&nbsp;</td>
             <td class="auto-style23">&nbsp;</td>
             <td><strong>
-                <asp:Button ID="btnCancelar" runat="server" CssClass="btn btn-primary" Text="Cancelar" Width="90px" />
+                <asp:Button ID="btnCancelar" runat="server" CssClass="btn btn-primary" Text="Cancelar" Width="90px" OnClick="btnCancelar_Click" />
                 </strong></td>
             <td>&nbsp;</td>
         </tr>
