@@ -142,7 +142,7 @@ namespace Locadora.Camadas.DAL
         public void UpDate(MODEL.Cliente cliente)
         {
             SqlConnection conexao = new SqlConnection(Strcon);
-            string sql = "UpDate Cliente set nome=@nome, ";
+            string sql = "Update Cliente set nome=@nome, ";
             sql += " celular=@celular, email=@email, ";
             sql += " nascimento=@nascimento, cpf=@cpf ";
             sql += " where codigoCliente=@codigoCliente;";

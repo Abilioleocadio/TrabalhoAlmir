@@ -24,10 +24,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <p class="auto-style19">
-    <strong><span class="auto-style20">Vendas</span></strong><br />
+        <strong><span class="auto-style20">Vendas</span></strong><br />
 </p>
 <p>
-    <asp:SqlDataSource ID="sqlVendas" runat="server" ConnectionString="<%$ ConnectionStrings:MOTOSConnectionString %>" SelectCommand="SELECT [codigoVenda], [idPecas], [idCliente], [idMoto] FROM [VendaPecas]"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="sqlVendas" runat="server" ConnectionString="<%$ ConnectionStrings:MOTOSConnectionString %>" SelectCommand="SELECT [codigoVenda], [idCliente], [idPecas], [idMoto], [quantidade] FROM [VendaPecas]"></asp:SqlDataSource>
     <asp:SqlDataSource ID="sqlMoto" runat="server" ConnectionString="<%$ ConnectionStrings:MOTOSConnectionString %>" SelectCommand="SELECT [motoMarca], [codigoMoto], [situacao], [idCliente], [motoModelo], [anoMoto] FROM [Motos]"></asp:SqlDataSource>
     <asp:SqlDataSource ID="sqlCliente" runat="server" ConnectionString="<%$ ConnectionStrings:MOTOSConnectionString %>" SelectCommand="SELECT [codigoCliente], [nome], [celular], [email], [nascimento], [cpf] FROM [Cliente]"></asp:SqlDataSource>
     <asp:SqlDataSource ID="sqlPeca" runat="server" ConnectionString="<%$ ConnectionStrings:MOTOSConnectionString %>" SelectCommand="SELECT [codigoPecas], [nome], [anoPeca], [quantidade], [preco] FROM [Pecas]"></asp:SqlDataSource>
@@ -36,10 +36,11 @@
     <asp:GridView ID="grvVendas" CssClass="table" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" DataKeyNames="codigoVenda" DataSourceID="sqlVendas" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnPageIndexChanging="grvVendas_PageIndexChanging" OnRowCommand="grvVendas_RowCommand">
         <AlternatingRowStyle BackColor="#CCCCCC" />
         <Columns>
-            <asp:BoundField DataField="codigoVenda" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="codigoVenda" />
-            <asp:BoundField DataField="idCliente" HeaderText="ID Cliente:" SortExpression="idCliente" />
-            <asp:BoundField DataField="idMoto" HeaderText="Id Moto" SortExpression="idMoto" />
-            <asp:BoundField DataField="idPecas" HeaderText="ID Peça" SortExpression="idPecas" />
+            <asp:BoundField DataField="codigoVenda" HeaderText="codigoVenda" InsertVisible="False" ReadOnly="True" SortExpression="codigoVenda" />
+            <asp:BoundField DataField="idPecas" HeaderText="idPecas" SortExpression="idPecas" />
+            <asp:BoundField DataField="idCliente" HeaderText="idCliente" SortExpression="idCliente" />
+            <asp:BoundField DataField="idMoto" HeaderText="idMoto" SortExpression="idMoto" />
+            <asp:BoundField DataField="quantidade" HeaderText="quantidade" SortExpression="quantidade" />
             <asp:CommandField ButtonType="Button" SelectText="Selecionar" ShowSelectButton="True" />
         </Columns>
         <FooterStyle BackColor="#CCCCCC" />
@@ -93,13 +94,15 @@
                 </asp:DropDownList>
             </td>
             <td><strong>
-                <asp:Button ID="btnGravar" runat="server" CssClass="btn btn-primary" Text="Gravar" Width="90px" OnClick="btnGravar_Click" />
+                <asp:Button ID="btnVender" runat="server" CssClass="btn btn-primary" Text="Vender" Width="90px" OnClick="btnVender_Click" />
                 </strong></td>
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td class="auto-style21">&nbsp;</td>
-            <td class="auto-style23">&nbsp;</td>
+            <td class="auto-style21">Quantidade:</td>
+            <td class="auto-style23">
+                <asp:TextBox ID="txtQuantidade" runat="server" Width="100px"></asp:TextBox>
+            </td>
             <td><strong>
                 <asp:Button ID="btnCancelar" runat="server" CssClass="btn btn-primary" Text="Cancelar" Width="90px" OnClick="btnCancelar_Click" />
                 </strong></td>

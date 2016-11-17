@@ -29,6 +29,7 @@ namespace Locadora.Camadas.DAL
                     venpecas.idCliente = Convert.ToInt32(reader["idCliente"].ToString());
                     venpecas.idPecas = Convert.ToInt32(reader["idPecas"].ToString());
                     venpecas.idMoto = Convert.ToInt32(reader["idMotos"].ToString());
+                    venpecas.quantidade = Convert.ToInt32(reader["quantidade"].ToString());
                     lstVendaPecas.Add(venpecas);
                 }
             }
@@ -62,6 +63,7 @@ namespace Locadora.Camadas.DAL
                     venpecas.idCliente = Convert.ToInt32(reader["idCliente"].ToString());
                     venpecas.idPecas = Convert.ToInt32(reader["idPecas"].ToString());
                     venpecas.idMoto = Convert.ToInt32(reader["idMoto"].ToString());
+                    venpecas.quantidade = Convert.ToInt32(reader["qunatidade"].ToString());
                     lstVendaPecas.Add(venpecas);
                 }
             }
@@ -80,11 +82,13 @@ namespace Locadora.Camadas.DAL
         public void Insert(MODEL.VendaPecas venpecas)
         {
             SqlConnection conexao = new SqlConnection(Strcon);
-            string sql = "Insert into VendaPecas values (@idCliente, @idPecas, @idMoto);";
+            string sql = "Insert into VendaPecas values (@idCliente, @idPecas, @idMoto, @quantidade);";
+            sql += "Update Peca set quantidade=quantidade - @quantidade where codigoVenda=@codigoVenda;";
             SqlCommand cmd = new SqlCommand(sql, conexao);
             cmd.Parameters.AddWithValue("idCliente", venpecas.idCliente);
             cmd.Parameters.AddWithValue("idPecas", venpecas.idPecas);
             cmd.Parameters.AddWithValue("idMoto", venpecas.idMoto);
+            cmd.Parameters.AddWithValue("quantidade", venpecas.quantidade);
             conexao.Open();
             try
             {
@@ -103,13 +107,15 @@ namespace Locadora.Camadas.DAL
         public void UpDate(MODEL.VendaPecas venpecas)
         {
             SqlConnection conexao = new SqlConnection(Strcon);
-            string sql = "UpDate Pecas set idCliente=@idCliente";
-            sql += "idPecas=@idPecas, idMoto=@idMoto";
+            string sql = "Update Pecas set idCliente=@idCliente";
+            sql += "idPecas=@idPecas, idMoto=@idMoto, quantidade=@quantidade";
             SqlCommand cmd = new SqlCommand(sql, conexao);
             cmd.Parameters.AddWithValue("@codigoVenda", venpecas.codigoVenda);
             cmd.Parameters.AddWithValue("@idCliente", venpecas.idCliente);
             cmd.Parameters.AddWithValue("@idPecas", venpecas.idPecas);
             cmd.Parameters.AddWithValue("@idMoto", venpecas.idMoto);
+            cmd.Parameters.AddWithValue("@quantidade", venpecas.quantidade);
+
             conexao.Open();
             try
             {

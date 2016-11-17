@@ -12,5 +12,6 @@ namespace Locadora.Camadas.MODEL
         public int idCliente { get; set; }
         public int idPecas { get; set; }
         public int idMoto { get; set; }
+        public int quantidade { get; set; }
     }
 }

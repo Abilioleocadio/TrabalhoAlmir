@@ -109,7 +109,7 @@ namespace Locadora.Camadas.DAL
         public void UpDate(MODEL.Motos motos)
         {
             SqlConnection conexao = new SqlConnection(Strcon);
-            string sql = "UpDate Motos set motoMarca=@motoMarca,";
+            string sql = "Update Motos set motoMarca=@motoMarca,";
             sql += "situacao=@situacao, idCliente=@idCliente,";
             sql += "motoModelo=@motoModelo, anoMoto=@anoMoto";
             sql += "where codigoMoto=@codigoMoto;";

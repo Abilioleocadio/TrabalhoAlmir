@@ -56,10 +56,10 @@
     <asp:GridView ID="grvMotos" runat="server" CssClass="table" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CaptionAlign="Bottom" CellPadding="3" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" DataKeyNames="codigoMoto" DataSourceID="sqlMotos" OnPageIndexChanging="grvMotos_PageIndexChanging1" OnRowCommand="grvMotos_RowCommand">
         <AlternatingRowStyle BackColor="#CCCCCC" />
         <Columns>
-            <asp:BoundField DataField="idCliente" HeaderText="ID Cliente" SortExpression="idCliente" />
             <asp:BoundField DataField="codigoMoto" HeaderText="ID Moto" SortExpression="codigoMoto" InsertVisible="False" ReadOnly="True" />
             <asp:BoundField DataField="motoMarca" HeaderText="Marca" SortExpression="motoMarca" />
             <asp:BoundField DataField="situacao" HeaderText="Situação" SortExpression="situacao" />
+            <asp:BoundField DataField="idCliente" HeaderText="ID Cliente" SortExpression="idCliente" />
             <asp:BoundField DataField="motoModelo" HeaderText="Modelo" SortExpression="motoModelo" />
             <asp:BoundField DataField="anoMoto" HeaderText="Ano" SortExpression="anoMoto" />
             <asp:CommandField ButtonType="Button" SelectText="Selecionar" ShowSelectButton="True" />
@@ -140,7 +140,7 @@
                 <td class="auto-style30"><strong></strong></td>
                 <td>&nbsp;</td>
                 <td>
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MOTOSConnectionString %>" SelectCommand="SELECT * FROM [Cliente]"></asp:SqlDataSource>
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MOTOSConnectionString %>" SelectCommand="SELECT [codigoCliente], [nome], [celular], [email], [nascimento], [cpf] FROM [Cliente]"></asp:SqlDataSource>
                 </td>
             </tr>
         </table>

@@ -29,16 +29,18 @@ public partial class Vendas : System.Web.UI.Page
             ddlCliente.SelectedValue = null;
             ddlMoto.SelectedValue = null;
             ddlPeca.SelectedValue = null;
+            txtQuantidade.Text = null;
         }
 
         ddlCliente.Enabled = status;
         ddlMoto.Enabled = status;
         ddlPeca.Enabled = status;
+        txtQuantidade.Enabled = status;
 
         btnInserir.Enabled = !status;
         btnEditar.Enabled = !status;
         btnRemover.Enabled = !status;
-        btnGravar.Enabled = status;
+        btnVender.Enabled = status;
         btnCancelar.Enabled = status;
     }
 
@@ -83,7 +85,7 @@ public partial class Vendas : System.Web.UI.Page
         }
     }
 
-    protected void btnGravar_Click(object sender, EventArgs e)
+    protected void btnVender_Click(object sender, EventArgs e)
     {
         Locadora.Camadas.BLL.VendaPecas bllVenPecas = new Locadora.Camadas.BLL.VendaPecas();
         Locadora.Camadas.MODEL.VendaPecas venPecas = new Locadora.Camadas.MODEL.VendaPecas();
@@ -91,6 +93,7 @@ public partial class Vendas : System.Web.UI.Page
         venPecas.idCliente = Convert.ToInt32(ddlCliente.SelectedValue);
         venPecas.idMoto = Convert.ToInt32(ddlMoto.SelectedValue);
         venPecas.idPecas = Convert.ToInt32(ddlPeca.SelectedValue);
+        venPecas.quantidade = Convert.ToInt32(txtQuantidade.Text);
 
         if (Cache["OP"].ToString() == "I")
         {
@@ -133,10 +136,11 @@ public partial class Vendas : System.Web.UI.Page
         if (e.CommandName == "Select")
         {
             GridViewRow linha = grvVendas.Rows[Convert.ToInt32(e.CommandArgument)];
-            lblID.Text = linha.Cells[0].Text;
-            ddlCliente.Text = linha.Cells[1].Text;
-            ddlMoto.Text = linha.Cells[2].Text;
-            ddlPeca.Text = linha.Cells[3].Text;
+            lblID.Text = linha.Cells[1].Text;
+            ddlCliente.Text = linha.Cells[2].Text;
+            ddlPeca.Text = linha.Cells[4].Text;
+            ddlMoto.Text = linha.Cells[3].Text;        
+            txtQuantidade.Text = linha.Cells[5].Text;
         }
     }
 }
