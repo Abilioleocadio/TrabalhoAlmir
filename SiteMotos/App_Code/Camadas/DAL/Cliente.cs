@@ -156,9 +156,13 @@ namespace Locadora.Camadas.DAL
             conexao.Open();
             try
             {
-                Console.WriteLine("Erro na atualização do Cliente");
+                cmd.ExecuteNonQuery();
             }
             catch 
+            {
+                Console.WriteLine("Erro na atualização do Cliente");
+            }
+            finally
             {
                 conexao.Close();
             }

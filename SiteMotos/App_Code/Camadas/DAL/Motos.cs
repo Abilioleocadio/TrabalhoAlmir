@@ -123,9 +123,13 @@ namespace Locadora.Camadas.DAL
             conexao.Open();
             try
             {
-                Console.WriteLine("Erro na atualização de Motos...");
+                cmd.ExecuteNonQuery();
             }
             catch
+            {
+                Console.WriteLine("Erro na atualização de Motos...");
+            }
+            finally
             {
                 conexao.Close();
             }

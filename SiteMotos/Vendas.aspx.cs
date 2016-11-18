@@ -87,6 +87,8 @@ public partial class Vendas : System.Web.UI.Page
 
     protected void btnVender_Click(object sender, EventArgs e)
     {
+        Locadora.Camadas.BLL.Pecas bllPecas = new Locadora.Camadas.BLL.Pecas();
+        Locadora.Camadas.MODEL.Pecas pecas = new Locadora.Camadas.MODEL.Pecas();
         Locadora.Camadas.BLL.VendaPecas bllVenPecas = new Locadora.Camadas.BLL.VendaPecas();
         Locadora.Camadas.MODEL.VendaPecas venPecas = new Locadora.Camadas.MODEL.VendaPecas();
         venPecas.codigoVenda = Convert.ToInt32(lblID.Text);
@@ -94,10 +96,13 @@ public partial class Vendas : System.Web.UI.Page
         venPecas.idMoto = Convert.ToInt32(ddlMoto.SelectedValue);
         venPecas.idPecas = Convert.ToInt32(ddlPeca.SelectedValue);
         venPecas.quantidade = Convert.ToInt32(txtQuantidade.Text);
-
+        pecas = bllPecas.SelectById(Convert.ToInt32(ddlPeca.SelectedValue));
+        pecas.quantidade -= Convert.ToInt32(txtQuantidade.Text);
+        
         if (Cache["OP"].ToString() == "I")
         {
             bllVenPecas.Insert(venPecas);
+            bllPecas.UpDate(pecas);
         }
         else
         {

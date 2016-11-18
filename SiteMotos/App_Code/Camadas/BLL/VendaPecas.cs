@@ -24,6 +24,7 @@ namespace Locadora.Camadas.BLL
         {
             DAL.VendaPecas dalVenda = new DAL.VendaPecas();
             dalVenda.Insert(venpecas);
+           
         }
         public void Update(MODEL.VendaPecas venpecas)
         {

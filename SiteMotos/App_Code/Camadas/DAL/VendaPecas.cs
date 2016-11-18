@@ -83,7 +83,7 @@ namespace Locadora.Camadas.DAL
         {
             SqlConnection conexao = new SqlConnection(Strcon);
             string sql = "Insert into VendaPecas values (@idCliente, @idPecas, @idMoto, @quantidade);";
-            sql += "Update Peca set quantidade=quantidade - @quantidade where codigoVenda=@codigoVenda;";
+            
             SqlCommand cmd = new SqlCommand(sql, conexao);
             cmd.Parameters.AddWithValue("idCliente", venpecas.idCliente);
             cmd.Parameters.AddWithValue("idPecas", venpecas.idPecas);
@@ -119,9 +119,13 @@ namespace Locadora.Camadas.DAL
             conexao.Open();
             try
             {
-                Console.WriteLine("Erro na atualização de Venda de Peças...");
+                cmd.ExecuteNonQuery();
             }
             catch
+            {
+                Console.WriteLine("Erro na atualização de Venda de Peças...");
+            }
+            finally
             {
                 conexao.Close();
             }

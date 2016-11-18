@@ -46,26 +46,28 @@ namespace Locadora.Camadas.DAL
             return lstPecas;
         }
 
-        public List<MODEL.Pecas> SelectById(int codigoPecas)
+        public MODEL.Pecas SelectById(int codigoPecas)
         {
-            List<MODEL.Pecas> lstPecas = new List<MODEL.Pecas>();
+            MODEL.Pecas pecas = new MODEL.Pecas();
+            //List<MODEL.Pecas> lstPecas = new List<MODEL.Pecas>();
             SqlConnection conexao = new SqlConnection(Strcon);
             string sql = "Select * from Pecas where codigoPecas=@codigoPecas;";
             SqlCommand cmd = new SqlCommand(sql, conexao);
             cmd.Parameters.AddWithValue("@codigoPecas", codigoPecas);
             conexao.Open();
+            SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
             try
             {
-                SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
-                while (reader.Read())
+                
+                if (reader.Read())
                 {
-                    MODEL.Pecas pecas = new MODEL.Pecas();
+                  //  MODEL.Pecas pecas = new MODEL.Pecas();
                     pecas.codigoPecas = Convert.ToInt32(reader[0].ToString());
                     pecas.nome = reader["nome"].ToString();
                     pecas.anoPeca = reader["anoPeca"].ToString();
                     pecas.quantidade = Convert.ToInt32(reader["quantidade"].ToString());
                     pecas.preco = Convert.ToSingle(reader["preco"].ToString());
-                    lstPecas.Add(pecas);
+                   
                 }
             }
             catch
@@ -77,7 +79,7 @@ namespace Locadora.Camadas.DAL
                 conexao.Close();
             }
 
-            return lstPecas;
+            return pecas;
         }
 
         public void Insert(MODEL.Pecas pecas)
@@ -107,21 +109,28 @@ namespace Locadora.Camadas.DAL
         public void UpDate(MODEL.Pecas pecas)
         {
             SqlConnection conexao = new SqlConnection(Strcon);
-            string sql = "Update Pecas set nome=@nome";
+            string sql = "Update Pecas set quantidade=@quantidade where codigoPecas=@codigoPecas;";
+            SqlCommand cmd = new SqlCommand(sql, conexao);
+            /*string sql = "Update Pecas set nome=@nome";
             sql += "anoPeca=@anoPeca, qauntidade=@quantidade";
             sql += "preco=@preco";
             SqlCommand cmd = new SqlCommand(sql, conexao);
             cmd.Parameters.AddWithValue("@codigoPecas", pecas.codigoPecas);
             cmd.Parameters.AddWithValue("@nome", pecas.nome);
-            cmd.Parameters.AddWithValue("@anoPeca", pecas.anoPeca);
+            cmd.Parameters.AddWithValue("@anoPeca", pecas.anoPeca);*/
+            cmd.Parameters.AddWithValue("codigoPecas", pecas.codigoPecas);
             cmd.Parameters.AddWithValue("@quantidade", pecas.quantidade);
-            cmd.Parameters.AddWithValue("@preco", pecas.preco);
+            //cmd.Parameters.AddWithValue("@preco", pecas.preco);
             conexao.Open();
             try
             {
-                Console.WriteLine("Erro na atualização de Peças...");
+                cmd.ExecuteNonQuery();
             }
             catch
+            {
+                Console.WriteLine("Deu erro na atualização de Peças...");
+            }
+            finally
             {
                 conexao.Close();
             }

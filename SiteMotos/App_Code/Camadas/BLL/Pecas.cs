@@ -14,7 +14,7 @@ namespace Locadora.Camadas.BLL
             return dalPeca.Select();
         }
 
-        public List<MODEL.Pecas> SelectById(int codigoPecas)
+        public MODEL.Pecas SelectById(int codigoPecas)
         {
             DAL.Pecas dalPeca = new DAL.Pecas();
             return dalPeca.SelectById(codigoPecas);
