@@ -18,7 +18,7 @@
             text-align: right;
         }
         .auto-style23 {
-            width: 174px;
+            width: 277px;
         }
         </style>
 </asp:Content>
@@ -94,7 +94,7 @@
                 </asp:DropDownList>
             </td>
             <td><strong>
-                <asp:Button ID="btnVender" runat="server" CssClass="btn btn-primary" Text="Vender" Width="90px" OnClick="btnVender_Click" />
+                <asp:Button ID="btnVender" runat="server" CssClass="btn btn-primary" Text="Vender" Width="90px" OnClick="btnVender_Click" ValidationGroup="validate" />
                 </strong></td>
             <td>&nbsp;</td>
         </tr>
@@ -102,6 +102,7 @@
             <td class="auto-style21">Quantidade:</td>
             <td class="auto-style23">
                 <asp:TextBox ID="txtQuantidade" runat="server" Width="100px"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtQuantidade" ValidationGroup="validate" ErrorMessage="Campo Quantidade é obrigatório">Este Campo é Obrigatório</asp:RequiredFieldValidator>
             </td>
             <td><strong>
                 <asp:Button ID="btnCancelar" runat="server" CssClass="btn btn-primary" Text="Cancelar" Width="90px" OnClick="btnCancelar_Click" />
@@ -110,7 +111,9 @@
         </tr>
         <tr>
             <td class="auto-style21">&nbsp;</td>
-            <td class="auto-style23">&nbsp;</td>
+            <td class="auto-style23">
+                <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" />
+            </td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
         </tr>
